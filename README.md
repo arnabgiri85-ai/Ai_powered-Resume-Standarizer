@@ -1,224 +1,209 @@
-# 📄 Resume Standardization System – AI-Powered Resume Transformation
 
-An intelligent resume standardization platform built with **Streamlit**, **Google Gemini AI**, **Python-Docx**, and **Computer Vision** that automatically converts resumes from multiple formats into predefined corporate templates.
+# 📄 Resume Standardization System
 
-The system extracts, analyzes, restructures, and formats resumes into standardized organizational templates while preserving essential candidate information.
+### AI-Powered Resume Transformation using Gemini AI
 
-**Source:** Based on the uploaded implementation files.  
+An intelligent resume standardization platform built with **Streamlit**, **Google Gemini AI**, **OpenCV**, and **Python-Docx** that automatically transforms resumes from multiple formats into standardized corporate templates.
 
----
-
-# 🚀 Features
-
-### 📂 Multi-Format Resume Upload
-
-Supports:
-
-* PDF resumes
-* DOCX resumes
-* JPG/JPEG resumes
-* PNG resumes
-
-### 🤖 AI-Powered Information Extraction
-
-Uses **Google Gemini** to extract:
-
-* Candidate Name
-* Professional Summary
-* Education Details
-* Certifications
-* Technical Skills
-* Work Experience
-* Project Experience
-* Organization Information
-
-### 📝 Resume Standardization
-
-Converts resumes into:
-
-1. Internal Corporate Template
-2. Client Template
-3. Client Template with Passport Photo
-
-### 🖼 Image Resume Processing
-
-For image-based resumes:
-
-* OCR through Gemini Vision
-* Resume text extraction
-* Information parsing
-
-### 🎓 Education Parsing
-
-Automatically extracts:
-
-* Degree
-* Institution
-* Year of Passing
-
-### 💼 Project Experience Generation
-
-AI generates:
-
-* Project Title
-* Role
-* Duration
-* Technologies Used
-* Responsibilities
-
-### 📷 Passport Photo Extraction
-
-Using OpenCV:
-
-* Detects face from resume
-* Crops passport-sized photo
-* Inserts photo into client template
-
-### 📦 Bulk Processing
-
-* Upload multiple resumes
-* Process simultaneously
-* Download ZIP package
-
-### 🔐 API Access Modes
-
-* User Gemini API Key
-* Trial Mode (Limited Use)
+Supports **PDF, DOCX, JPG, and PNG** resumes and generates professional recruiter-ready resume formats.
 
 ---
 
-# 🏗 System Architecture
+## 🚀 Features
 
-```text
-                        ┌──────────────────────┐
-                        │      User Uploads    │
-                        │ PDF / DOCX / Images  │
-                        └──────────┬───────────┘
-                                   │
-                                   ▼
-                    ┌───────────────────────────┐
-                    │   Resume Input Processor  │
-                    └──────────┬────────────────┘
-                               │
-             ┌─────────────────┼─────────────────┐
-             │                 │                 │
-             ▼                 ▼                 ▼
+✅ Multi-format Resume Upload (PDF, DOCX, JPG, PNG)
 
-      PDF Parser        DOCX Parser      Image Parser
-    (PyMuPDF)        (python-docx)     (Gemini Vision)
+✅ AI-Powered Resume Understanding using Gemini
 
-             └─────────────────┬─────────────────┘
-                               ▼
+✅ Automatic Resume Standardization
 
-                  ┌────────────────────────┐
-                  │ Resume Text Extraction │
-                  └──────────┬─────────────┘
-                             ▼
+✅ Education, Skills & Experience Extraction
 
-                 ┌─────────────────────────┐
-                 │   Google Gemini AI      │
-                 │ Information Extraction  │
-                 └──────────┬──────────────┘
-                            │
-                            ▼
+✅ Project Experience Generation
 
-     ┌──────────────────────────────────────────────┐
-     │ Extracted Resume Components                  │
-     │----------------------------------------------│
-     │ • Name                                       │
-     │ • Summary                                    │
-     │ • Skills                                     │
-     │ • Education                                  │
-     │ • Certifications                             │
-     │ • Work Experience                            │
-     │ • Projects                                   │
-     └───────────────────┬──────────────────────────┘
-                         ▼
+✅ Passport Photo Extraction
 
-         ┌──────────────────────────────────┐
-         │ Resume Standardization Engine     │
-         └──────────────┬───────────────────┘
-                        │
-      ┌─────────────────┼───────────────────┐
-      │                 │                   │
-      ▼                 ▼                   ▼
+✅ Bulk Resume Processing
 
- Internal       Client Template     Client Template
- Template                           + Photo Template
+✅ Multiple Corporate Templates
 
-      │                 │                   │
-      └─────────────────┼───────────────────┘
-                        ▼
+✅ ZIP Download Support
 
-          ┌────────────────────────────┐
-          │ DOCX Generation Engine     │
-          │ (python-docx Templates)    │
-          └─────────────┬──────────────┘
-                        ▼
+✅ Streamlit Web Interface
 
-             ┌──────────────────────┐
-             │ ZIP Package Creation │
-             └──────────┬───────────┘
-                        ▼
+---
 
-                 Download Results
+# 🏗️ System Architecture
+
+```mermaid
+flowchart LR
+
+A[Resume Upload] --> B{Input Type}
+
+B --> C[PDF]
+B --> D[DOCX]
+B --> E[Image]
+
+C --> F[Text Extraction]
+D --> F
+E --> G[Gemini Vision OCR]
+
+G --> F
+
+F --> H[Google Gemini AI]
+
+H --> I[Name Extraction]
+H --> J[Summary Generation]
+H --> K[Skills Extraction]
+H --> L[Education Parsing]
+H --> M[Certification Detection]
+H --> N[Project Experience Extraction]
+
+I --> O[Resume Standardization Engine]
+J --> O
+K --> O
+L --> O
+M --> O
+N --> O
+
+O --> P[Internal Template]
+O --> Q[Client Template]
+O --> R[Client Template + Photo]
+
+P --> S[DOCX Output]
+Q --> S
+R --> S
+
+S --> T[ZIP Packaging]
+T --> U[Download]
 ```
 
 ---
 
-# 🔄 Workflow Architecture
+# 🤖 AI Processing Pipeline
 
-```text
-Resume Upload
-      │
-      ▼
-Format Detection
-      │
-      ▼
-Text Extraction
-      │
-      ▼
-Gemini AI Analysis
-      │
-      ▼
-Information Categorization
-      │
-      ├── Name
-      ├── Education
-      ├── Skills
-      ├── Certifications
-      ├── Experience
-      └── Projects
-      │
-      ▼
-Template Population
-      │
-      ▼
-Document Cleaning
-      │
-      ▼
-Formatting & Validation
-      │
-      ▼
-ZIP Export
+```mermaid
+flowchart TD
+
+A[Resume Input] --> B[Text Extraction]
+
+B --> C[Gemini 2.5 Flash]
+
+C --> D1[Extract Name]
+C --> D2[Generate Professional Summary]
+C --> D3[Extract Skills]
+C --> D4[Extract Education]
+C --> D5[Extract Certifications]
+C --> D6[Extract Projects]
+
+D1 --> E[Structured Resume Data]
+D2 --> E
+D3 --> E
+D4 --> E
+D5 --> E
+D6 --> E
+
+E --> F[Template Population]
+
+F --> G[Formatting Engine]
+
+G --> H[Final Standardized Resume]
 ```
 
 ---
 
-# 🛠 Tech Stack
+# 📷 Client Template With Photo Workflow
 
-| Component              | Technology              |
-| ---------------------- | ----------------------- |
-| Frontend               | Streamlit               |
-| LLM                    | Google Gemini 2.5 Flash |
-| Vision Model           | Gemini Vision           |
-| PDF Parsing            | PyMuPDF                 |
-| DOCX Processing        | python-docx             |
-| Image Processing       | OpenCV                  |
-| Face Detection         | Haar Cascade            |
-| PDF Generation         | ReportLab               |
-| Packaging              | ZipFile                 |
-| Environment Management | dotenv                  |
+One of the unique features of this project is automatic passport-photo generation from resumes.
+
+```mermaid
+flowchart TD
+
+A[Resume Upload] --> B[Convert Resume to PDF]
+
+B --> C[PDF to Image]
+
+C --> D[Face Detection OpenCV]
+
+D --> E[Passport Photo Extraction]
+
+E --> F[Photo Cropping]
+
+F --> G[Insert Photo into Template]
+
+G --> H[Generate Final Resume]
+```
+
+---
+
+# 🧩 Component Architecture
+
+```mermaid
+graph TB
+
+subgraph Frontend
+A[Streamlit UI]
+end
+
+subgraph AI Layer
+B[Google Gemini AI]
+end
+
+subgraph Processing Layer
+C[PDF Parser]
+D[DOCX Parser]
+E[Image Parser]
+F[Resume Analyzer]
+end
+
+subgraph Template Engine
+G[Internal Template]
+H[Client Template]
+I[Client Template + Photo]
+end
+
+subgraph Output
+J[DOCX Generator]
+K[ZIP Generator]
+end
+
+A --> C
+A --> D
+A --> E
+
+C --> F
+D --> F
+E --> F
+
+F --> B
+
+B --> G
+B --> H
+B --> I
+
+G --> J
+H --> J
+I --> J
+
+J --> K
+```
+
+---
+
+# 📊 Technology Stack
+
+| Category              | Technology              |
+| --------------------- | ----------------------- |
+| Frontend              | Streamlit               |
+| LLM                   | Google Gemini 2.5 Flash |
+| Vision AI             | Gemini Vision           |
+| PDF Processing        | PyMuPDF                 |
+| DOCX Processing       | python-docx             |
+| Image Processing      | OpenCV                  |
+| Face Detection        | Haar Cascade            |
+| PDF Generation        | ReportLab               |
+| Environment Variables | python-dotenv           |
+| Packaging             | ZipFile                 |
 
 ---
 
@@ -261,11 +246,15 @@ cd resume-standardization-system
 
 ```bash
 python -m venv venv
+```
 
+Linux/Mac
+
+```bash
 source venv/bin/activate
 ```
 
-Windows:
+Windows
 
 ```bash
 venv\Scripts\activate
@@ -277,9 +266,9 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Configure Environment
+### Configure Environment Variables
 
-Create `.env`
+Create a `.env` file
 
 ```env
 GEMINI_API_KEY=YOUR_API_KEY
@@ -293,147 +282,117 @@ streamlit run app.py
 
 ---
 
-# 📊 AI Processing Pipeline
+# 🔄 Resume Processing Workflow
 
 ```text
-Resume
-   │
-   ▼
+Resume Upload
+      │
+      ▼
+Format Detection
+      │
+      ▼
 Text Extraction
-   │
-   ▼
-Gemini AI
-   │
-   ├── Name Extraction
-   ├── Education Analysis
-   ├── Skill Extraction
-   ├── Certification Analysis
-   ├── Experience Summarization
-   └── Project Understanding
-   │
-   ▼
-Structured Resume Data
-   │
-   ▼
-Template Generation
+      │
+      ▼
+Gemini AI Analysis
+      │
+      ▼
+Information Categorization
+      │
+      ├── Name
+      ├── Education
+      ├── Skills
+      ├── Certifications
+      ├── Experience
+      └── Projects
+      │
+      ▼
+Template Population
+      │
+      ▼
+Document Formatting
+      │
+      ▼
+ZIP Generation
+      │
+      ▼
+Download
 ```
 
 ---
 
 # 🎯 Business Use Cases
 
-### HR Departments
+### HR Teams
 
-* Standardize candidate resumes
-* Improve recruiter productivity
-* Create uniform candidate profiles
-
-### Staffing Companies
-
-* Client-specific resume formatting
-* Automated profile generation
-* Faster candidate submissions
+* Resume Standardization
+* Candidate Profiling
+* Skill Inventory Creation
 
 ### Recruitment Agencies
 
-* Bulk resume processing
-* Resume enrichment
-* Candidate presentation enhancement
+* Bulk Resume Processing
+* Client Format Generation
+* Faster Candidate Submission
 
-### Enterprises
+### Staffing Companies
 
-* Internal resume repository standardization
-* Skill inventory management
-* Resource profiling
+* Automated Resume Enhancement
+* Professional Resume Presentation
+* Template Compliance
 
 ---
 
 # 📈 Future Enhancements
 
-* ATS Score Generation
-* Resume Ranking Engine
-* Job Description Matching
-* Candidate Skill Gap Analysis
-* Multi-language Resume Support
-* Resume-to-LinkedIn Conversion
-* Resume Chatbot Assistant
+* ATS Score Calculation
+* Resume Ranking System
+* JD Matching Engine
+* Resume Skill Gap Analysis
+* Multi-Language Resume Support
+* Resume-to-LinkedIn Converter
+* AI Career Advisor
 * Dashboard Analytics
 * Cloud Deployment
-* Resume Recommendation System
 
 ---
 
-# ⭐ Key Highlights
+# ⭐ Project Highlights
 
-✅ AI-Powered Resume Understanding
-
-✅ Multi-format Resume Support
-
-✅ Automated Resume Standardization
-
-✅ Passport Photo Extraction
-
-✅ Bulk Resume Processing
-
-✅ Multiple Corporate Templates
-
-✅ Streamlit-Based UI
-
-✅ Google Gemini Integration
-
-✅ ZIP Export Functionality
-
-✅ HR & Recruitment Ready
+* AI-powered Resume Understanding
+* Gemini Vision Integration
+* Passport Photo Extraction
+* Multiple Resume Templates
+* Bulk Processing Support
+* Corporate Recruitment Ready
+* End-to-End Automation
+* Modern Streamlit Interface
 
 ---
 
-## Architecture Diagram for GitHub (Mermaid)
+## 📸 Screenshots
 
-Paste this directly into GitHub README:
+Add application screenshots here:
 
-````markdown
-```mermaid
-flowchart TD
+```md
+![Home Page](images/home.png)
 
-A[Resume Upload] --> B{Resume Type}
+![Processing](images/processing.png)
 
-B --> C[PDF Parser]
-B --> D[DOCX Parser]
-B --> E[Image Parser]
-
-C --> F[Resume Text]
-D --> F
-E --> F
-
-F --> G[Google Gemini AI]
-
-G --> H[Name Extraction]
-G --> I[Education Extraction]
-G --> J[Skills Extraction]
-G --> K[Certification Extraction]
-G --> L[Experience Extraction]
-G --> M[Project Extraction]
-
-H --> N[Resume Standardization Engine]
-I --> N
-J --> N
-K --> N
-L --> N
-M --> N
-
-N --> O[Internal Template]
-N --> P[Client Template]
-N --> Q[Client Template with Photo]
-
-Q --> R[Face Detection & Photo Extraction]
-
-O --> S[DOCX Output]
-P --> S
-R --> S
-
-S --> T[ZIP Generation]
-T --> U[Download]
+![Output](images/output.png)
 ```
-````
 
-This README presents the project as a production-ready AI resume processing system and is suitable for recruiters, GitHub visitors, internship applications, and project viva presentations.
+---
+
+## 👨‍💻 Author
+
+**Arnab Giri**
+
+M.Sc. Computer Science | AI & Machine Learning Enthusiast
+
+GitHub: `arnabgiri85-ai`
+
+---
+
+This version is much more professional and visually appealing for recruiters, GitHub visitors, internship applications, and project demonstrations.
+****
